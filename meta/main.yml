@@ -13,7 +13,6 @@ galaxy_info:
   - name: CentOS
   - name: Debian
     versions:
-    - wheezy
     - jessie
   - name: Alpine
   categories:
