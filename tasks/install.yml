@@ -6,55 +6,15 @@
     - "{{ ansible_os_family }}.yml"
     - default.yml
 
-- name: 'Check epel repo'
-  shell: yum repolist | grep -qi EPEL
-  register: epel_repo_check
-  check_mode: false
-  when: ansible_pkg_mgr == "yum"
-
-- name: 'Add epel repo'
-  template:
-    src: "epel.repo"
-    dest: "/etc/yum.repos.d/epel.repo"
-    owner: "root"
-    group: "root"
-    mode: "0644"
-  when: ansible_pkg_mgr == "yum" and epel_repo_check is defined and epel_repo_check.rc != 0
-
-- name: Add haproxy apt repo (jessie)
-  apt_repository:
-    repo: deb http://http.debian.net/debian {{ ansible_distribution_release }} main
-    state: present
-    update_cache: yes
-  when: ansible_distribution_release == 'jessie'
-
-- name: 'Add haproxy apt repo (Ubuntu)'
-  apt_repository:
-    repo: "ppa:vbernat/haproxy-1.5"
-    state: present
-    update_cache: yes
-  when: ansible_distribution == "Ubuntu"
-
-- name: Install HAProxy (yum)
-  yum:
-    name: "{{ haproxy_package_name }}"
-  when: ansible_pkg_mgr == "yum"
-
-- name: Install HAProxy (apt jessie)
-  apt:
-    name: "{{ haproxy_package_name }}"
-    default_release: "{{ansible_distribution_release}}"
-  when: ansible_distribution_release == 'jessie'
-
-- name: Install HAProxy (Ubuntu)
-  package:
-    name: "{{ haproxy_package_name }}"
-  when: ansible_distribution == 'Ubuntu'
+- name: Include distribution tasks
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "install/{{ ansible_distribution }}.yml"
+    - "install/{{ ansible_os_family }}.yml"
 
 - name: Install supplementary packages
   package:
-    name: "{{ item }}"
-  with_items: "{{ haproxy_extra_packages }}"
+    name: "{{ haproxy_extra_packages }}"
 
 - name: 'Enable it'
   service:
