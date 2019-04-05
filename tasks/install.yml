@@ -6,20 +6,12 @@
     - "{{ ansible_os_family }}.yml"
     - default.yml
 
-- name: 'Check epel repo'
-  shell: yum repolist | grep -qi EPEL
-  register: epel_repo_check
-  check_mode: false
+- name: 'Add epel repository'
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
   when: ansible_pkg_mgr == "yum"
-
-- name: 'Add epel repo'
-  template:
-    src: "epel.repo"
-    dest: "/etc/yum.repos.d/epel.repo"
-    owner: "root"
-    group: "root"
-    mode: "0644"
-  when: ansible_pkg_mgr == "yum" and epel_repo_check is defined and epel_repo_check.rc != 0
 
 - name: Add haproxy apt repo (jessie)
   apt_repository:
@@ -43,7 +35,7 @@
 - name: Install HAProxy (apt jessie)
   apt:
     name: "{{ haproxy_package_name }}"
-    default_release: "{{ansible_distribution_release}}"
+    default_release: "{{ ansible_distribution_release }}"
   when: ansible_distribution_release == 'jessie'
 
 - name: Install HAProxy (Ubuntu)
