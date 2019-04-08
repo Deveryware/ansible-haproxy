@@ -1,12 +1,12 @@
 ---
-- name: Add haproxy apt repo (jessie)
+- name: Debian - Ensure haproxy apt repo is added.
   apt_repository:
     repo: "deb http://http.debian.net/debian {{ ansible_distribution_release }} main"
     state: present
     update_cache: yes
   when: ansible_distribution_release == 'jessie'
 
-- name: Install HAProxy (jessie)
+- name: Debian - Ensure HAProxy is installed.
   apt:
     name: "{{ haproxy_package_name }}"
     default_release: "{{ ansible_distribution_release }}"
