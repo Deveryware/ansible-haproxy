@@ -16,11 +16,6 @@
   package:
     name: "{{ haproxy_extra_packages }}"
 
-- name: 'Enable it'
-  service:
-    name: haproxy
-    enabled: yes
-
 - name: 'Ensure chroot directory exists'
   file:
     name: "{{ haproxy_global.chroot }}"

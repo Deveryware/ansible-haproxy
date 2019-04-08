@@ -1,0 +1,5 @@
+---
+- name: Service - Ensure service is enabled.
+  service:
+    name: haproxy
+    enabled: yes
