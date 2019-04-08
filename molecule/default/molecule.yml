@@ -6,8 +6,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
+  - name: debian-jessie
+    image: debian:jessie
 provisioner:
   name: ansible
   lint:
