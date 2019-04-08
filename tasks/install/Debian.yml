@@ -4,10 +4,8 @@
     repo: "deb http://http.debian.net/debian {{ ansible_distribution_release }} main"
     state: present
     update_cache: yes
-  when: ansible_distribution_release == 'jessie'
 
 - name: Debian - Ensure HAProxy is installed.
   apt:
     name: "{{ haproxy_package_name }}"
     default_release: "{{ ansible_distribution_release }}"
-  when: ansible_distribution_release == 'jessie'
