@@ -1,6 +1,9 @@
 ---
 - include: install.yml
 
+- include: systemd.yml
+  when: ansible_service_mgr == "systemd"
+
 - include: service.yml
 
 - include: configure.yml
