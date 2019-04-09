@@ -3,6 +3,7 @@
 # defaults file for haproxy
 haproxy_config_dir: "{{ _haproxy_config_dir }}"
 haproxy_config_file: "{{ _haproxy_config_dir }}/haproxy.cfg"
+haproxy_chroot_dir: "{{ _haproxy_chroot_dir }}"
 
 haproxy_package_name: "{{ _haproxy_package_name }}"
 haproxy_extra_packages: "{{ _haproxy_extra_packages }}"
@@ -19,7 +20,7 @@ haproxy_global:
     - address: /dev/log
       facility: local1
       level: notice
-  chroot: /var/lib/haproxy
+  chroot: "{{ haproxy_chroot_dir }}"
   user: haproxy
   group: haproxy
   daemon: true
