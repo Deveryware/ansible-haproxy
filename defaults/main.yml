@@ -27,6 +27,10 @@ haproxy_global:
   ssl_default_bind_ciphers: '{{ _haproxy_ssl_ciphers }}'
   ssl_default_server_options: '{{ _haproxy_ssl_options }}'
   ssl_default_server_ciphers: '{{ _haproxy_ssl_ciphers }}'
+  stats:
+    socket:
+      - path: '/run/haproxy/admin.sock'
+        params: 'mode 660 level admin'
   tune:
     ssl:
       default-dh-param: 2048
