@@ -62,7 +62,24 @@ Example
              ip: '192.168.1.100'
 ```
 
-License
+Testing
 -------
+
+To test the role you first need to install Molecule with :
+
+```
+$ pip install molecule docker
+```
+
+If you encounter a problem while installing with pip, install [python-dev](https://stackoverflow.com/a/21530768)
+
+To run the tests, execute :
+
+```
+$ molecule test
+```
+
+License
+------
 
 Apache v2

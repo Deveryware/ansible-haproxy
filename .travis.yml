@@ -1,0 +1,11 @@
+---
+language: python
+services: docker
+
+install:
+  # Install test dependencies.
+  - pip install molecule docker
+
+script:
+  # Run tests.
+  - molecule test
