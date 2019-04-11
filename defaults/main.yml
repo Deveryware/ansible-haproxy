@@ -3,6 +3,7 @@
 # defaults file for haproxy
 haproxy_config_dir: "{{ _haproxy_config_dir }}"
 haproxy_config_file: "{{ _haproxy_config_dir }}/haproxy.cfg"
+haproxy_chroot_dir: "{{ _haproxy_chroot_dir }}"
 
 haproxy_package_name: "{{ _haproxy_package_name }}"
 haproxy_extra_packages: "{{ _haproxy_extra_packages }}"
@@ -19,7 +20,7 @@ haproxy_global:
     - address: /dev/log
       facility: local1
       level: notice
-  chroot: /var/lib/haproxy
+  chroot: "{{ haproxy_chroot_dir }}"
   user: haproxy
   group: haproxy
   daemon: true
@@ -57,19 +58,19 @@ haproxy_defaults:
     - dontlognull
   errorfile:
     - code: 400
-      file: /etc/haproxy/errors/400.http
+      file: "{{ haproxy_config_dir }}/errors/400.http"
     - code: 403
-      file: /etc/haproxy/errors/403.http
+      file: "{{ haproxy_config_dir }}/errors/403.http"
     - code: 408
-      file: /etc/haproxy/errors/408.http
+      file: "{{ haproxy_config_dir }}/errors/408.http"
     - code: 500
-      file: /etc/haproxy/errors/500.http
+      file: "{{ haproxy_config_dir }}/errors/500.http"
     - code: 502
-      file: /etc/haproxy/errors/502.http
+      file: "{{ haproxy_config_dir }}/errors/502.http"
     - code: 503
-      file: /etc/haproxy/errors/503.http
+      file: "{{ haproxy_config_dir }}/errors/503.http"
     - code: 504
-      file: /etc/haproxy/errors/504.http
+      file: "{{ haproxy_config_dir }}/errors/504.http"
 
 haproxy_resolvers: []
 haproxy_backends: []
