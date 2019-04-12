@@ -7,6 +7,7 @@
     owner: root
     group: root
     mode: 0755
+  register: systemd_service_file
   notify: restart haproxy
 
 - name: Systemd - Ensure service is linked into /etc/systemd.
@@ -14,3 +15,8 @@
     src: "/lib/systemd/system/haproxy.service"
     dest: "/etc/systemd/system/multi-user.target.wants/haproxy.service"
     state: link
+
+- name: Systemd - Ensure systemd daemon is reloaded.
+  systemd:
+    daemon_reload: yes
+  when: systemd_service_file.changed
