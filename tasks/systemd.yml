@@ -16,6 +16,9 @@
     dest: "/etc/systemd/system/multi-user.target.wants/haproxy.service"
     state: link
 
+#
+# Keep systemd-specific bits here instead of pushing a global handler.
+#
 - name: Systemd - Ensure systemd daemon is reloaded.
   systemd:
     daemon_reload: yes
