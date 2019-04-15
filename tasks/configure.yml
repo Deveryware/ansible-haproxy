@@ -138,6 +138,48 @@
   with_items: "{{ haproxy_userlists }}"
   when: haproxy_userlists is defined
 
+## CREATE ERROR PAGES
+
+- name: Add error directory
+  file:
+    path: "{{ haproxy_config_dir }}/errors"
+    state: directory
+
+- name: Ensure http 400 error file is present
+  copy:
+    src: 400.http
+    dest: "{{ haproxy_config_dir }}/errors/400.http"
+
+- name: Ensure http 403 error file is present
+  copy:
+    src: 403.http
+    dest: "{{ haproxy_config_dir }}/errors/403.http"
+
+- name: Ensure http 408 error file is present
+  copy:
+    src: 408.http
+    dest: "{{ haproxy_config_dir }}/errors/408.http"
+
+- name: Ensure http 500 error file is present
+  copy:
+    src: 500.http
+    dest: "{{ haproxy_config_dir }}/errors/500.http"
+
+- name: Ensure http 502 error file is present
+  copy:
+    src: 502.http
+    dest: "{{ haproxy_config_dir }}/errors/502.http"
+
+- name: Ensure http 503 error file is present
+  copy:
+    src: 503.http
+    dest: "{{ haproxy_config_dir }}/errors/503.http"
+
+- name: Ensure http 504 error file is present
+  copy:
+    src: 504.http
+    dest: "{{ haproxy_config_dir }}/errors/504.http"
+
 ## ASSEMBLE CONFIG - GLOBAL & DEFAULT
 
 - name: 'Delete the compiled folder'
