@@ -1,0 +1,5 @@
+---
+_haproxy__repo: "https://download.fedoraproject.org/pub"
+_haproxy_package_name: haproxy
+_haproxy_extra_packages:
+  - socat
