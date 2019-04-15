@@ -1,7 +1,7 @@
 ---
 - name: Debian - Ensure haproxy apt repo is added.
   apt_repository:
-    repo: "deb http://http.debian.net/debian {{ ansible_distribution_release }} main"
+    repo: "deb {{ haproxy_debian_repo }} {{ ansible_distribution_release }} main"
     state: present
     update_cache: yes
 

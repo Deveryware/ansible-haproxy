@@ -4,6 +4,7 @@ _haproxy_config_dir: "{{ _haproxy_etc_prefix }}/haproxy"
 _haproxy_config_file: "{{ _haproxy_config_dir }}/haproxy.cfg"
 _haproxy_chroot_dir: /var/lib/haproxy
 
+_haproxy_debian_repo: "http://http.debian.net/debian"
 _haproxy_package_name: haproxy
 _haproxy_extra_packages:
   - socat

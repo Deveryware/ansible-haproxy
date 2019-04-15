@@ -5,6 +5,7 @@ haproxy_config_dir: "{{ _haproxy_config_dir }}"
 haproxy_config_file: "{{ _haproxy_config_dir }}/haproxy.cfg"
 haproxy_chroot_dir: "{{ _haproxy_chroot_dir }}"
 
+haproxy_debian_repo: "{{ _haproxy_debian_repo }}"
 haproxy_package_name: "{{ _haproxy_package_name }}"
 haproxy_extra_packages: "{{ _haproxy_extra_packages }}"
 
