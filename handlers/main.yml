@@ -2,6 +2,10 @@
 
 # handlers file for haproxy
 
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+
 - name: restart haproxy
   service:
     name: haproxy
