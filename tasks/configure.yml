@@ -182,11 +182,6 @@
 
 ## ASSEMBLE CONFIG - GLOBAL & DEFAULT
 
-- name: 'Delete the compiled folder'
-  file:
-    path: "{{ haproxy_config_dir }}/compiled"
-    state: absent
-
 - name: 'Create the compiled folder'
   file:
     path: "{{ haproxy_config_dir }}/compiled"
