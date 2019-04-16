@@ -3,4 +3,3 @@ _haproxy_repo: "ppa:vbernat"
 _haproxy_package_name: haproxy
 _haproxy_extra_packages:
   - socat
-

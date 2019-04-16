@@ -3,7 +3,7 @@
   yum_repository:
     name: epel
     description: EPEL YUM repo
-    baseurl: "{{ haproxy_repo }}/$releasever/$basearch/
+    baseurl: "{{ haproxy_repo }}/$releasever/$basearch/"
 
 - name: Install HAProxy (yum)
   yum:

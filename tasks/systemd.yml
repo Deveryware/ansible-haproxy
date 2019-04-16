@@ -2,7 +2,7 @@
 - name: Systemd - Ensure service script is present.
   become: true
   template:
-    src:  "haproxy.systemd.j2"
+    src: "haproxy.systemd.j2"
     dest: "/lib/systemd/system/haproxy.service"
     owner: root
     group: root
