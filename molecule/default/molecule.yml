@@ -6,8 +6,18 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: debian-jessie
-    image: debian:jessie
+  - name: centos7
+    image: "kurotoshiro/centos7-systemd"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
+  - name: debian8
+    image: "kurotoshiro/debian8-systemd"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible
   lint:
