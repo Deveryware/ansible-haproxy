@@ -191,14 +191,11 @@
   template:
     src: "global.cfg"
     dest: "{{ haproxy_config_dir }}/compiled/01-global.cfg"
-  when: haproxy_global is defined
-  tags: 'test'
 
 - name: 'Build up the default config'
   template:
     src: "defaults.cfg"
     dest: "{{ haproxy_config_dir }}/compiled/02-defaults.cfg"
-  when: haproxy_defaults is defined
 
 ## ASSEMBLE FINAL CONFIG
 
