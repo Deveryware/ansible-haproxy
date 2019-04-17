@@ -1,5 +1,5 @@
 ---
-_haproxy__repo: "https://download.fedoraproject.org/pub"
+_haproxy_repo: "https://download.fedoraproject.org/pub/epel"
 _haproxy_package_name: haproxy
 _haproxy_extra_packages:
   - socat
