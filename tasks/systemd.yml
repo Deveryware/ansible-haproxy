@@ -19,7 +19,7 @@
 #
 # Keep systemd-specific bits here instead of pushing a global handler.
 #
-- name: Systemd - Ensure systemd daemon is reloaded.
+- name: Systemd - Ensure systemd daemon is reloaded.  # noqa 503
   systemd:
     daemon_reload: yes
   when: systemd_service_file.changed
