@@ -5,6 +5,14 @@
     description: EPEL YUM repo
     baseurl: "{{ haproxy_repo }}/$releasever/$basearch/"
 
-- name: Install HAProxy (yum)
+- name: 'Install HAProxy (yum)'
   yum:
     name: "{{ haproxy_package_name }}"
+
+- name: 'Ensure the stats socket path exists'
+  file:
+    name: "{{ socket | dirname }}"
+    state: directory
+  loop: "{{ haproxy_global.stats.socket | map(attribute='path') | list }}"
+  loop_control:
+    loop_var: socket
