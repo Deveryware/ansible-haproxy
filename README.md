@@ -3,19 +3,24 @@ haproxy
 
 Installs and configures [HAProxy 1.5](http://www.haproxy.org/).
 
+Support for HAProxy >=1.8 will be done at a later date.
+
 Versions
 --------
 
-**WARNING:** This is the README for the `master` branch, which tracks the development of version 2 and targets Ansible 2.x. This branch is under active development and will include breaking changes.
+The **master** branch is under development and can include breaking change.
 
-The **last release** in the 1.x series is [1.2.0](https://github.com/devops-coop/ansible-haproxy/tree/v1.2.0).
+The **current** release is [1.2.0](https://github.com/deveryware/ansible-haproxy/tree/v1.2.0).
+
+The  **next** release is **1.3.0**.
 
 Features
 --------
 
-* Supports Alpine, CentOS, Debian, and Ubuntu.
-* Installs HAProxy 1.5 from official repositories on Debian and Ubuntu.
-* Installs EPEL repository on CentOS.
+* Supports CentOS and Debian (Ubuntu should work)
+* Installs HAProxy from official repositories on Debian.
+* Installs HAProxy from EPEL repository on CentOS.
+* Tests via Molecule and Docker
 
 Role Variables
 --------------
