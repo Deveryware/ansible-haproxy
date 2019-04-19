@@ -33,4 +33,3 @@
   loop: "{{ haproxy_global.stats.socket | map(attribute='path') | list }}"
   loop_control:
     loop_var: socket
-  when: haproxy_global.stats.socket is not string
