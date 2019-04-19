@@ -15,8 +15,21 @@
   package:
     name: "{{ haproxy_extra_packages }}"
 
+- name: 'Ensure config directory exists'
+  file:
+    name: "{{ haproxy_config_dir }}"
+    state: directory
+
 - name: 'Ensure chroot directory exists'
   file:
     name: "{{ haproxy_global.chroot }}"
     state: directory
   when: haproxy_global.chroot is defined and haproxy_global.chroot
+
+- name: 'Ensure the stats socket directory exists'
+  file:
+    name: "{{ socket | dirname }}"
+    state: directory
+  loop: "{{ haproxy_global.stats.socket | map(attribute='path') | list }}"
+  loop_control:
+    loop_var: socket
