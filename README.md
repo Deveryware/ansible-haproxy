@@ -8,11 +8,9 @@ Support for HAProxy >=1.8 will be done at a later date.
 Versions
 --------
 
-The **master** branch is under development and can include breaking change.
+The **current** release is [1.3.0](https://github.com/deveryware/ansible-haproxy/tree/v1.3.0).
 
-The **current** release is [1.2.0](https://github.com/deveryware/ansible-haproxy/tree/v1.2.0).
-
-The  **next** release is **1.3.0**.
+The  **next** release is in development (Cf. [the projects tab](https://github.com/Deveryware/ansible-haproxy/projects)).
 
 Features
 --------
@@ -45,6 +43,8 @@ Role Variables
     A list of listen proxies.
 
 See [`vars/main.yml`](vars/main.yml) for a complete list of configurable .
+
+See [the wiki](https://github.com/Deveryware/ansible-haproxy/wiki) for more details.
 
 Example
 -------
@@ -88,3 +88,12 @@ License
 ------
 
 Apache v2
+
+Author Information
+------------------
+
+This role was created in 2014 by Pheromone - Pierre Paul Lefebvre (lefebvre@pheromone.ca).
+
+This role was forked in 2019 by Deveryware.
+
+[The contributors list](https://github.com/Deveryware/ansible-haproxy/blob/master/AUTHORS)
