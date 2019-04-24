@@ -44,6 +44,8 @@ Role Variables
 
 See [`vars/main.yml`](vars/main.yml) for a complete list of configurable .
 
+See [the wiki](https://github.com/Deveryware/ansible-haproxy/wiki) for more details.
+
 Example
 -------
 
