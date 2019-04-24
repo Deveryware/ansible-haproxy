@@ -88,3 +88,12 @@ License
 ------
 
 Apache v2
+
+Author Information
+------------------
+
+This role was created in 2014 by Pheromone - Pierre Paul Lefebvre (lefebvre@pheromone.ca).
+
+This role was forked in 2019 by Deveryware.
+
+[The contributors list](https://github.com/Deveryware/ansible-haproxy/blob/master/AUTHORS)
