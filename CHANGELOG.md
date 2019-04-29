@@ -1,6 +1,38 @@
 # ansible-haproxy change log
 
-## [Unreleased]
+## [1.3.0] (2019-04-24)
+
+### Added
+
+* [PR#1] Multiple stats sockets in `global` section.
+* [PR#3] Allow `insecure_password` to be used in `userlist` section.
+* [PR#4] Allow `compression` to be used in `backend` section.
+* [PR#12] Molecule support.
+* [PR#20] Use systemd when available.
+* [PR#21] Add `haproxy_chroot_dir` in `global` section.
+* [PR#22] Provide and install the http error files.
+* [PR#26] Support for private package repositories.
+* [PR#39] Support for multiple x509 certificates in `frontend` section.
+
+### Changed
+
+* [PR#9] Split tasks/install.yml into distribution/OS specifc files.
+* [PR#42] Socket declaration breaking change.
+
+### Fixed
+
+* [PR#2] Rename `flatten` to `haproxy_flatten`.
+* [PR#11] Install epel repository with yum_repository module.
+* [PR#21] Replace hardocded paths with `haproxy_config_dir` in the default configuration.
+* [PR#28] Reach idempotency compliance.
+* [PR#37] Move redirects rules after http-request and http-response in the `backend` and `frontend` sections.
+
+## Removed
+
+* [PR#5] Debian Squeeze support.
+* [PR#6] Debian Wheezy support.
+* [PR#7] Debian Jessie apt backports.
+* [PR#12] Kitchen support.
 
 ## [1.2.0] (2017-11-28)
 
@@ -68,7 +100,7 @@
 
 [1.1.0]: https://github.com/devops-coop/ansible-haproxy/compare/1.0...v1.1.0
 [1.2.0]: https://github.com/devops-coop/ansible-haproxy/compare/v1.1.0...v1.2.0
-[Unreleased]: https://github.com/devops-coop/ansible-haproxy/compare/v.1.20...
+[1.3.0]: https://github.com/Deveryware/ansible-haproxy/compare/v1.2.0...v1.3.0
 
 [#29]: https://github.com/devops-coop/ansible-haproxy/issues/29
 [#32]: https://github.com/devops-coop/ansible-haproxy/issues/32
@@ -98,7 +130,6 @@
 [#84]: https://github.com/devops-coop/ansible-haproxy/issues/84
 [#90]: https://github.com/devops-coop/ansible-haproxy/issues/90
 [#96]: https://github.com/devops-coop/ansible-haproxy/issues/96
-
 [#72]: https://github.com/devops-coop/ansible-haproxy/pulls/72
 [#85]: https://github.com/devops-coop/ansible-haproxy/pulls/85
 [#89]: https://github.com/devops-coop/ansible-haproxy/pulls/89
@@ -112,3 +143,22 @@
 [#100]: https://github.com/devops-coop/ansible-haproxy/pulls/100
 [#101]: https://github.com/devops-coop/ansible-haproxy/pulls/101
 [#102]: https://github.com/devops-coop/ansible-haproxy/pulls/102
+
+[PR#1]: https://github.com/Deveryware/ansible-haproxy/pull/1
+[PR#2]: https://github.com/Deveryware/ansible-haproxy/pull/2
+[PR#3]: https://github.com/Deveryware/ansible-haproxy/pull/3
+[PR#4]: https://github.com/Deveryware/ansible-haproxy/pull/4
+[PR#5]: https://github.com/Deveryware/ansible-haproxy/pull/5
+[PR#6]: https://github.com/Deveryware/ansible-haproxy/pull/6
+[PR#7]: https://github.com/Deveryware/ansible-haproxy/pull/7
+[PR#9]: https://github.com/Deveryware/ansible-haproxy/pull/9
+[PR#11]: https://github.com/Deveryware/ansible-haproxy/pull/11
+[PR#12]: https://github.com/Deveryware/ansible-haproxy/pull/12
+[PR#20]: https://github.com/Deveryware/ansible-haproxy/pull/20
+[PR#21]: https://github.com/Deveryware/ansible-haproxy/pull/21
+[PR#22]: https://github.com/Deveryware/ansible-haproxy/pull/22
+[PR#26]: https://github.com/Deveryware/ansible-haproxy/pull/26
+[PR#28]: https://github.com/Deveryware/ansible-haproxy/pull/28
+[PR#37]: https://github.com/Deveryware/ansible-haproxy/pull/37
+[PR#39]: https://github.com/Deveryware/ansible-haproxy/pull/39
+[PR#42]: https://github.com/Deveryware/ansible-haproxy/pull/42
