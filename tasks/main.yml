@@ -2,7 +2,9 @@
 - include: install.yml
 
 - include: systemd.yml
-  when: ansible_service_mgr == "systemd"
+  when:
+    - ansible_service_mgr == "systemd"
+    - not haproxy_svc_unit.stat.exists
 
 - include: service.yml
 
