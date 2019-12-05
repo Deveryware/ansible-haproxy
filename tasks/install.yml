@@ -11,6 +11,11 @@
     - "install/{{ ansible_distribution }}.yml"
     - "install/{{ ansible_os_family }}.yml"
 
+- name: Check if the systemd unit is installed by the package
+  stat:
+    path: /lib/systemd/system/haproxy.service
+  register: haproxy_svc_unit
+
 - name: Install supplementary packages
   package:
     name: "{{ haproxy_extra_packages }}"
