@@ -84,6 +84,8 @@ empty: true
 #     ssl:
 #       cert: /etc/ssl/private/cert.pem
 #       ciphers: 'RC4-SHA:AES128-SHA:AES:!ADH:!aNULL:!DH:!EDH:!eNULL'
+#       options: 'no-sslv3'
+#     log: global
 #     maxconn:
 #     monitor:
 #       uri:
@@ -120,6 +122,10 @@ empty: true
 #     rspadd:
 #       - "X-ResponseHeader1:\\ some-value"
 #       - "X-ResponseHeader2:\\ some-value"
+#     reqpass:
+#       - "^[^:\\ ]*:"
+#     reqipass:
+#       - "^[^:\\ ]*:"
 #     reqrep:
 #       - "^Host:\ www.(.*)$ Host:\ \1 if host_www"
 #     reqirep:
@@ -128,6 +134,9 @@ empty: true
 #       - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
 #     rspirep:
 #       - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#     stats:
+#       - uri /
+#       - hide-version
 #     force_persist:
 #
 # haproxy_backends:
@@ -138,6 +147,8 @@ empty: true
 #     cookie:
 #     log:
 #     retries:
+#     fullconn:
+#     http_check:
 #     contimeout:
 #     NOTE: contimeout is deprecated
 #           http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#4-contimeout
