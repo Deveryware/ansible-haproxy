@@ -42,11 +42,16 @@
   register: directory_contents
   changed_when: false
 
+- name: "Set frontends file list"
+  set_fact:
+    haproxy_frontends_file_list: >-
+      {{ haproxy_frontends | json_query('[*].name') | map('regex_replace',  '^(.*)$', '\1.cfg') | list }}
+
 - name: "Remove unmanaged files for the frontends"
   file:
     path: "{{ item.path }}"
     state: absent
-  when: (item.path | basename) not in (haproxy_frontends | json_query('[*].name') | map('regex_replace',  '(.*)', '\\1.cfg') | list)
+  when: (item.path | basename) not in haproxy_frontends_file_list
   with_items: "{{ directory_contents.files }}"
 
 - name: 'Build up the frontends'
@@ -70,11 +75,16 @@
   register: directory_contents
   changed_when: false
 
+- name: "Set backends file list"
+  set_fact:
+    haproxy_backends_file_list: >-
+      {{ haproxy_backends | json_query('[*].name') | map('regex_replace',  '^(.*)$', '\1.cfg') | list }}
+
 - name: "Remove unmanaged files for the backends"
   file:
     path: "{{ item.path }}"
     state: absent
-  when: (item.path | basename) not in (haproxy_backends | json_query('[*].name') | map('regex_replace',  '(.*)', '\\1.cfg') | list)
+  when: (item.path | basename) not in haproxy_backends_file_list
   with_items: "{{ directory_contents.files }}"
 
 - name: 'Build up the backends'
@@ -98,11 +108,16 @@
   register: directory_contents
   changed_when: false
 
+- name: "Set listen file list"
+  set_fact:
+    haproxy_listen_file_list: >-
+      {{ haproxy_listen | json_query('[*].name') | map('regex_replace',  '^(.*)$', '\1.cfg') | list }}
+
 - name: "Remove unmanaged files the listen sections"
   file:
     path: "{{ item.path }}"
     state: absent
-  when: (item.path | basename) not in (haproxy_listen | json_query('[*].name') | map('regex_replace',  '(.*)', '\\1.cfg') | list)
+  when: (item.path | basename) not in haproxy_listen_file_list
   with_items: "{{ directory_contents.files }}"
 
 - name: 'Build up the listen sections'
@@ -128,7 +143,7 @@
   file:
     path: "{{ item.path }}"
     state: absent
-  when: (item.path | basename) not in (haproxy_userlists | json_query('[*].name') | map('regex_replace',  '(.*)', '\\1.cfg') | list)
+  when: (item.path | basename) not in (haproxy_userlists | json_query('[*].name') | map('regex_replace',  '^(.*)$', '\1.cfg') | list)
   with_items: "{{ directory_contents.files }}"
 
 - name: 'Build up the userlist sections'
