@@ -1,4 +1,13 @@
 ---
+
+- name: Systemd - Get packages facts
+  package_facts:
+    manager: "auto"
+
+- name: Systemd - Set haproxy version
+  set_fact:
+    haproxy_version: "{{ ansible_facts.packages.haproxy[0] }}"
+
 - name: Systemd - Ensure service script is present.
   become: true
   template:

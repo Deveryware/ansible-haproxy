@@ -6,14 +6,21 @@ After=network.target syslog.service
 Wants=syslog.service
 
 [Service]
-Environment="CONFIG=/etc/haproxy/haproxy.cfg" "PIDFILE=/run/haproxy.pid"
 EnvironmentFile=-/etc/default/haproxy
+Environment="CONFIG=/etc/haproxy/haproxy.cfg" "PIDFILE=/run/haproxy.pid"
 ExecStartPre=/usr/sbin/haproxy -f $CONFIG -c -q $EXTRAOPTS
-ExecStart=/usr/sbin/haproxy-systemd-wrapper -f $CONFIG -p $PIDFILE $EXTRAOPTS
 ExecReload=/usr/sbin/haproxy -f $CONFIG -c -q $EXTRAOPTS
 ExecReload=/bin/kill -USR2 $MAINPID
 KillMode=mixed
 Restart=always
+{% if haproxy_version is version('1.8', '<') %}
+ExecStart=/usr/sbin/haproxy-systemd-wrapper -f $CONFIG -p $PIDFILE $EXTRAOPTS
+{% else %}
+ExecStart=/usr/sbin/haproxy -Ws -f $CONFIG -p $PIDFILE $EXTRAOPTS
+LimitNOFILE=262144
+SuccessExitStatus=143
+Type=notify
+{% endif %}
 
 [Install]
 WantedBy=multi-user.target
