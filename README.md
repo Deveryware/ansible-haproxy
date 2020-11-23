@@ -1,14 +1,12 @@
 haproxy
 ========
 
-Installs and configures [HAProxy 1.5](http://www.haproxy.org/).
-
-Support for HAProxy >=1.8 will be done at a later date.
+Installs and configures [HAProxy](http://www.haproxy.org/).
 
 Versions
 --------
 
-The **current** release is [1.3.0](https://github.com/deveryware/ansible-haproxy/tree/v1.3.0).
+The **current** release is [1.4.0](https://github.com/deveryware/ansible-haproxy/tree/v1.4.0).
 
 The  **next** release is in development (Cf. [the projects tab](https://github.com/Deveryware/ansible-haproxy/projects)).
 
@@ -19,6 +17,11 @@ Features
 * Installs HAProxy from official repositories on Debian.
 * Installs HAProxy from EPEL repository on CentOS.
 * Tests via Molecule and Docker
+
+Requirements
+------------
+
+The python library `jmespath` is required on the control node.
 
 Role Variables
 --------------
