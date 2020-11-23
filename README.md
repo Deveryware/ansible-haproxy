@@ -82,7 +82,9 @@ haproxy_frontends:
       cert:
         - "/etc/ssl/private/certificat.pem"
       ca_file: "/etc/ssl/iprivate/ca-certificates.crt"
-      options: "verify required"
+      options:
+        - "verify"
+        - "optional"
 ```
 
 Testing
