@@ -70,6 +70,21 @@ Example
              ip: '192.168.1.100'
 ```
 
+SSL variables
+-------------
+
+```yaml
+haproxy_frontends:
+  - name: ft_default
+    bind:
+      - "0.0.0.0:443"
+    ssl:
+      cert:
+        - "/etc/ssl/private/certificat.pem"
+      ca_file: "/etc/ssl/iprivate/ca-certificates.crt"
+      options: "verify required"
+```
+
 Testing
 -------
 
