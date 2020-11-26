@@ -70,8 +70,8 @@ Example
              ip: '192.168.1.100'
 ```
 
-SSL variables
--------------
+TLS configuration
+-----------------
 
 ```yaml
 haproxy_frontends:
@@ -82,9 +82,9 @@ haproxy_frontends:
       cert:
         - "/etc/ssl/private/certificat.pem"
       ca_file: "/etc/ssl/iprivate/ca-certificates.crt"
+      ciphers: "ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM..."
       options:
-        - "verify"
-        - "optional"
+        - "verify optionnal"
 ```
 
 Testing
