@@ -6,7 +6,7 @@ Installs and configures [HAProxy](http://www.haproxy.org/).
 Versions
 --------
 
-The **current** release is [1.4.0](https://github.com/deveryware/ansible-haproxy/tree/v1.4.0).
+The **current** release is [1.5.0](https://github.com/deveryware/ansible-haproxy/tree/v1.4.0).
 
 The  **next** release is in development (Cf. [the projects tab](https://github.com/Deveryware/ansible-haproxy/projects)).
 
