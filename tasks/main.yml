@@ -1,12 +1,12 @@
 ---
-- include: install.yml
+- import_tasks: install.yml
 
-- include: systemd.yml
+- import_tasks: systemd.yml
   when:
     - ansible_service_mgr == "systemd"
     - not haproxy_svc_unit.stat.exists
 
-- include: service.yml
+- import_tasks: service.yml
 
-- include: configure.yml
+- import_tasks: configure.yml
   when: haproxy_manage_config
