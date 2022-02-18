@@ -4,6 +4,7 @@
     name: epel
     description: EPEL YUM repo
     baseurl: "{{ haproxy_repo }}/$releasever/$basearch/"
+  when: haproxy_repo
 
 - name: 'Install HAProxy (yum)'
   yum:
