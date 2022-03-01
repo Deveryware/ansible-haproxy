@@ -4,6 +4,7 @@
     repo: "deb {{ haproxy_repo }}"
     state: present
     update_cache: yes
+  when: haproxy_repo
 
 - name: Debian - Ensure HAProxy is installed.
   apt:
