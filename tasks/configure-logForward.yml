@@ -1,0 +1,42 @@
+---
+
+- name: Gather the package facts
+  package_facts:
+    manager: auto
+
+- name: Systemd - Set haproxy version
+  set_fact:
+    haproxy_version: "{{ ansible_facts.packages.haproxy[0].version }}" 
+
+- name : Create confg
+  block:
+    - name: 'Create directory for the log-forward sections'
+      file:
+        path: "{{ haproxy_config_dir }}/log-forward.d"
+        state: directory
+
+    - name: "List files the log-forward sections"
+      find:
+        paths: "{{ haproxy_config_dir }}/log-forward.d"
+        patterns: "*.cfg"
+      register: directory_contents
+      changed_when: false
+
+    - name: "Set log-forward file list"
+      set_fact:
+        haproxy_logforward_file_list: >-
+          {{ haproxy_logforward | json_query('[*].name') | map('regex_replace',  '^(.*)$', '\1.cfg') | list }}
+
+    - name: "Remove unmanaged files the log-forward sections"
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      when: (item.path | basename) not in haproxy_logforward_file_list
+      with_items: "{{ directory_contents.files }}"
+
+    - name: 'Build up the log-forward sections'
+      template:
+        src: "log-forward.cfg"
+        dest: "{{ haproxy_config_dir }}/log-forward.d/{{ item.name }}.cfg"
+      with_items: "{{ haproxy_logforward }}"
+  when: "{{ haproxy_version is version('2.3', '>=') }}"

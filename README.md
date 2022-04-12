@@ -44,6 +44,9 @@ Role Variables
 * `haproxy_listen`
 
     A list of listen proxies.
+* `haproxy_logforward`
+
+    A list of log-forward proxies (Only for HAProxy version 2.3 and above).
 
 See [`vars/main.yml`](vars/main.yml) for a complete list of configurable .
 
@@ -68,6 +71,19 @@ Example
          servers:
            - name: 'be-mysupersite-01'
              ip: '192.168.1.100'
+       log-forward:
+          - name: 'my-syslog-lb'
+            dgrambind: 
+              - '127.0.0.1:514' # Listen on UDP IPv4
+            log:
+              - ip: '192.168.1.101'
+                port: 5514
+                sample_range: "1:2"
+                facility: "local0 info"
+              - ip: '192.168.1.102'
+                port: 5514
+                sample_range: "3:4"
+                facility: "local0 info"
 ```
 
 Testing
