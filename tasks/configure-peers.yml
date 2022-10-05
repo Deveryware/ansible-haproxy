@@ -1,5 +1,4 @@
 ---
-
 - name: "Create directory for the peers sections"
   file:
     path: "{{ haproxy_config_dir }}/peers.d"
