@@ -129,8 +129,13 @@
 
 ## ASSEMBLE CONFIG - log-forward
 - name:  log-forward section
-  include_tasks: "configure-logForward.yml" 
+  include_tasks: "configure-logForward.yml"
   when: haproxy_logforward is defined
+
+## ASSEMBLE CONFIG - PEERS
+- name: "Peers section"
+  include_tasks: "configure-peers.yml"
+  when: haproxy_peers is defined
 
 ## ASSEMBLE CONFIG - USERLIST
 
@@ -239,7 +244,7 @@
     src: "{{ haproxy_config_dir }}/listen.d"
     dest: "{{ haproxy_config_dir }}/compiled/06-listen.cfg"
 
-- name: Check if directory exist for the log-forward sections 
+- name: 'Check if directory exist for the log-forward sections'
   stat:
     path: "{{ haproxy_config_dir }}/log-forward.d"
   register: out
@@ -249,6 +254,11 @@
     src: "{{ haproxy_config_dir }}/log-forward.d"
     dest: "{{ haproxy_config_dir }}/compiled/07-log-forward.cfg"
   when: out.stat.exists
+
+- name: 'Assemble the peers sections configuration file'
+  assemble:
+    src: "{{ haproxy_config_dir }}/peers.d"
+    dest: "{{ haproxy_config_dir }}/compiled/07-peers.cfg"
 
 - name: 'Assemble the userlists sections configuration file'
   assemble:

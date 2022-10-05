@@ -1,0 +1,31 @@
+---
+
+- name: "Create directory for the peers sections"
+  file:
+    path: "{{ haproxy_config_dir }}/peers.d"
+    state: directory
+
+- name: "List files the peers sections"
+  find:
+    paths: "{{ haproxy_config_dir }}/peers.d"
+    patterns: "*.cfg"
+  register: directory_contents
+  changed_when: false
+
+- name: "Set peers file list"
+  set_fact:
+    haproxy_peers_file_list: >-
+      {{ haproxy_peers | json_query('[*].name') | map('regex_replace',  '^(.*)$', '\1.cfg') | list }}
+
+- name: "Remove unmanaged files the peers sections"
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  when: (item.path | basename) not in haproxy_peers_file_list
+  with_items: "{{ directory_contents.files }}"
+
+- name: "Build up the peers sections"
+  template:
+    src: "peers.cfg"
+    dest: "{{ haproxy_config_dir }}/peers.d/{{ item.name }}.cfg"
+  with_items: "{{ haproxy_peers }}"
