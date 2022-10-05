@@ -244,3 +244,9 @@ empty: true
 #       auth:
 #       refresh:
 #     force_persist:
+# haproxy_peers:
+#   - name:
+#     peers:
+#       - name:
+#         ip:
+#         port:
