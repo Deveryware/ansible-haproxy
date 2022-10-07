@@ -47,6 +47,9 @@ Role Variables
 * `haproxy_logforward`
 
     A list of log-forward proxies (Only for HAProxy version 2.3 and above).
+* `haproxy_peers`
+
+    A list of peers.
 
 See [`vars/main.yml`](vars/main.yml) for a complete list of configurable .
 
@@ -73,7 +76,7 @@ Example
              ip: '192.168.1.100'
        log-forward:
           - name: 'my-syslog-lb'
-            dgrambind: 
+            dgrambind:
               - '127.0.0.1:514' # Listen on UDP IPv4
             log:
               - ip: '192.168.1.101'
