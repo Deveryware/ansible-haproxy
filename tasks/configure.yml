@@ -56,7 +56,7 @@
 
 - name: 'Validate frontends'
   ansible.builtin.fail:
-    msg: "Frontends description use undefined variable : {{ haproxy_frontends }}"
+    msg: "Frontends description use undefined variable: {{ haproxy_frontends }}"
   when: haproxy_frontends is match ('VARIABLE IS NOT DEFINED')
 
 - name: 'Build up the frontends'
@@ -94,7 +94,7 @@
 
 - name: 'Validate backends'
   ansible.builtin.fail:
-    msg: "Backends description use undefined variable : {{ haproxy_backends }}"
+    msg: "Backends description use undefined variable: {{ haproxy_backends }}"
   when: haproxy_backends is match ('VARIABLE IS NOT DEFINED')
 
 - name: 'Build up the backends'
@@ -132,7 +132,7 @@
 
 - name: 'Validate listen sections'
   ansible.builtin.fail:
-    msg: "Listen sections description use undefined variable : {{ haproxy_listen }}"
+    msg: "Listen sections description use undefined variable: {{ haproxy_listen }}"
   when: haproxy_listen is match ('VARIABLE IS NOT DEFINED')
 
 - name: 'Build up the listen sections'
